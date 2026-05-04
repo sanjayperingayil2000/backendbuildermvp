@@ -1,0 +1,18 @@
+{
+  "id": "account_page",
+  "uuid": "10d5e43b-92bd-4f8a-a866-10fab5563509",
+  "name": "AccountPage",
+  "route": "/account",
+  "section": "Account Page",
+  "widgets": [
+    {
+      "uuid": "d742b7be-7e36-406f-aa2f-567046f55275",
+      "id": "btn_siguiente",
+      "type": "PrimaryButton",
+      "props": {
+        "label": "Siguiente",
+        "buttonState": "disabled"
+      }
+    }
+  ]
+}

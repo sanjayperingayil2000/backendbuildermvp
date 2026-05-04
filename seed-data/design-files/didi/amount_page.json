@@ -1,0 +1,18 @@
+{
+  "id": "amount_page",
+  "uuid": "530ebaec-efc0-4fb8-8dda-c0fc3862c9e6",
+  "name": "AmountPage",
+  "route": "/amount",
+  "section": "Amount Page",
+  "widgets": [
+    {
+      "uuid": "d742b7be-7e36-406f-aa2f-567046f55276",
+      "id": "btn_pay",
+      "type": "PrimaryButton",
+      "props": {
+        "label": "Pagar",
+        "buttonState": "disabled"
+      }
+    }
+  ]
+}

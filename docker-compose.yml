@@ -1,0 +1,50 @@
+# docker-compose.yml
+
+# version: '3.8'
+
+services:
+
+  # ── LocalStack: fake AWS S3 running on your machine ──
+  localstack:
+    image: localstack/localstack:3.0
+    container_name: localstack
+    ports:
+      - "4566:4566"       # all LocalStack services run on this port
+    environment:
+      - SERVICES=s3       # we only need S3 for now
+      - DEBUG=1
+      - AWS_DEFAULT_REGION=us-east-1
+    volumes:
+      - localstack-data:/var/lib/localstack   # persist data between restarts
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4566/_localstack/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Node.js API server ──
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: antigravity-api
+    ports:
+      - "3001:3001"
+    environment:
+      - LOCALSTACK_ENDPOINT=http://localstack:4566
+      - AWS_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - S3_BUCKET_NAME=antigravity-bucket
+      - PORT=3001
+      - NODE_ENV=development
+    volumes:
+      - ./api/src:/app/src          # live reload — changes reflect instantly
+      - ./seed-data:/app/seed-data  # seed files accessible inside container
+    depends_on:
+      localstack:
+        condition: service_healthy  # wait for LocalStack to be ready
+    command: npm run dev
+
+volumes:
+  localstack-data:
