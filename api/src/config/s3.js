@@ -18,6 +18,7 @@ const s3Client = new S3Client({
       accessKeyId: process.env.AWS_ACCESS_KEY_ID || 'test',
       secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || 'test',
     },
+    requestChecksumCalculation: "WHEN_REQUIRED",
   }),
 });
 
