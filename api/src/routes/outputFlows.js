@@ -83,10 +83,12 @@ router.get('/:flowId', async (req, res) => {
 // POST /api/output-flows/:flowId
 // Saves (or overwrites) an output flow
 // Body: the full output JSON object
-// This is called from Next.js when the user clicks Save
+// Query: ?serviceName=DIDI (optional) to save to clients folder
+// This is called from Next.js when the user clicks Save or Publish
 // ──────────────────────────────────────────────────────────────
 router.post('/:flowId', async (req, res) => {
   const { flowId } = req.params;
+  const { serviceName } = req.query;
   const flowData = req.body;
 
   if (!flowData || typeof flowData !== 'object') {
@@ -99,14 +101,19 @@ router.post('/:flowId', async (req, res) => {
       ...flowData,
       _meta: {
         flowId,
+        ...(serviceName ? { serviceName } : {}),
         savedAt: new Date().toISOString(),
         savedBy: 'antigravity-ui',
       },
     };
 
+    const key = serviceName 
+      ? `clients/companion/${serviceName}/output-flows/${flowId}.json`
+      : `output-flows/${flowId}.json`;
+
     const command = new PutObjectCommand({
       Bucket: BUCKET_NAME,
-      Key: `output-flows/${flowId}.json`,
+      Key: key,
       Body: JSON.stringify(dataToSave, null, 2),
       ContentType: 'application/json',
     });
@@ -116,7 +123,7 @@ router.post('/:flowId', async (req, res) => {
     res.json({
       success: true,
       flowId,
-      key: `output-flows/${flowId}.json`,
+      key,
       savedAt: dataToSave._meta.savedAt,
     });
   } catch (error) {
