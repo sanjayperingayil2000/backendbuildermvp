@@ -1,0 +1,71 @@
+{
+  "manifest_version": "1.0",
+  "pages": [
+    {
+      "id": "didi_qr",
+      "uuid": "10d5e43b-92bd-4f8a-a866-10fab5563509",
+      "name": "QR Page",
+      "route": "/qr",
+      "section": "QR Page",
+      "widgets": [
+        {
+          "uuid": "af40ef7f-4125-4694-b6a3-914184792c0c",
+          "id": "toolbar_account",
+          "type": "Toolbar",
+          "props": {
+            "title": "Servicios Financieros",
+            "hasBackButton": true,
+            "backLabel": "Regresar"
+          }
+        },
+        {
+          "uuid": "b1c2d3e4-f5a6-7890-bcde-f12345678901",
+          "id": "btn_info_helper",
+          "type": "SecondaryButton",
+          "props": {
+            "buttonState": "idle",
+            "iconName": "info",
+            "label": "Información",
+            "enabled": true,
+            "onPressed": {
+              "action": "show_info",
+              "target": null,
+              "data": {}
+            }
+          }
+        },
+        {
+          "uuid": "c2d3e4f5-a6b7-8901-cdef-123456789012",
+          "id": "btn_close",
+          "type": "SecondaryButton",
+          "props": {
+            "buttonState": "idle",
+            "iconName": "close",
+            "label": "Cerrar",
+            "enabled": true,
+            "onPressed": {
+              "action": "close",
+              "target": null,
+              "data": {}
+            }
+          }
+        },
+        {
+          "uuid": "1a7c1ce1-c124-4f05-b3b8-1ac79598c0f6",
+          "id": "qr_code_display",
+          "type": "QRCode",
+          "props": {
+            "data": "INSERT_YOUR_QR_VALUE_OR_URL_HERE",
+            "size": "large",
+            "helperText": "Escanea la referencia para continuar"
+          }
+        }
+      ]
+    }
+  ],
+  "app": {
+    "id": "generated_app",
+    "name": "Generated App",
+    "version": "1.0.0+1"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "manifest_version": "2.0",
+  "pages": [
+    {
+      "id": "pago_repartidor_success",
+      "uuid": "0a1b2c3d-4e5f-6789-0123-456789abcdef",
+      "name": "PagoRepartidorSuccess",
+      "route": "/pago/repartidor/success",
+      "section": "Pago de Repartidor",
+      "widgets": [
+        {
+          "uuid": "1b2c3d4e-5f67-8901-2345-6789abcdef01",
+          "id": "toolbar_pago_success",
+          "type": "Toolbar",
+          "props": {
+            "title": "Pago de Repartidor",
+            "hasBackButton": false
+          }
+        },
+        {
+          "uuid": "2c3d4e5f-6789-0123-4567-89abcdef014",
+          "id": "btn_close",
+          "type": "SecondarButton",
+          "props": {
+            "buttonState": "idle",
+            "iconName": "close",
+            "label": "Cerrar",
+            "enabled": true,
+            "onPressed": {
+              "action": "close",
+              "target": null,
+              "data": {}
+            }
+          }
+        },
+        {
+          "uuid": "2c3d4e5f-6789-0123-4567-89abcdef012",
+          "id": "icon_transaction_success",
+          "type": "Icon",
+          "props": {
+            "iconName": "success_check_logo",
+            "size": "large",
+            "alignment": "center"
+          }
+        },
+        {
+          "uuid": "3d4e5f67-8901-2345-6789-abcdef01234",
+          "id": "text_success_message",
+          "type": "TextView",
+          "props": {
+            "text": "¡Transacción realizada con éxito!",
+            "alignment": "center",
+            "textStyle": "bold"
+          }
+        },
+        {
+          "uuid": "4e5f6789-0123-4567-89ab-cdef0123456",
+          "id": "text_printing_ticket",
+          "type": "TextView",
+          "props": {
+            "text": "IMPRIMIENDO TU TICKET...",
+            "alignment": "center",
+            "textStyle": "subtitle"
+          }
+        }
+      ]
+    }
+  ],
+  "app": {
+    "id": "generated_app",
+    "name": "Generated App",
+    "version": "1.0.0+1"
+  }
+}

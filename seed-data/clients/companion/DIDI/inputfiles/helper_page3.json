@@ -1,0 +1,52 @@
+{
+  "manifest_version": "2.0",
+  "pages": [
+    {
+      "id": "pago_repartidor_info",
+      "uuid": "7a8b9c0d-1e2f-3456-7890-abcdef123456",
+      "name": "PagoRepartidorInfo",
+      "route": "/pago/repartidor/info",
+      "section": "Pago de Repartidor",
+      "widgets": [
+        {
+          "uuid": "8b9c0d1e-2f34-5678-90ab-cdef12345678",
+          "id": "toolbar_pago_info",
+          "type": "Toolbar",
+          "props": {
+            "title": "Pago de Repartidor",
+            "hasBackButton": false
+          }
+        },
+        {
+          "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567891",
+          "id": "btn_close",
+          "type": "SecondaryButton",
+          "props": {
+            "buttonState": "idle",
+            "iconName": "close",
+            "label": "Cerrar",
+            "enabled": true,
+            "onPressed": {
+              "action": "close",
+              "target": null,
+              "data": {}
+            }
+          }
+        },
+        {
+          "uuid": "9c0d1e2f-3456-7890-abcd-ef1234567890",
+          "id": "text_helper_paragraph",
+          "type": "TextView",
+          "props": {
+            "text": "Título Lorem ipsum dolor sit amet consectetur. Nulla malesuada velit egestas tellus magna pulvinar amet congue. Turpis suspendisse sit enim euismod sapien tortor pretium ultrices. Egestas faucibus mi id integer viverra commodo. Viverra vel ut vitae eu. Tincidunt pretium lorem metus ut nec ac ut nulla quam. Tempus vestibulum volutpat sed in.\nVestibulum nisl leo non mauris ultricies maecenas aliquam. Accumsan faucibus ut nascetur egestas viverra diam at orci purus. Lorem tristique gravida quis ut amet. Egestas purus at ipsum ullamcorper. Volutpat elit commodo dui nibh tortor. Ut diam elementum at fusce. Tortor nullam a elementum ut mauris."
+          }
+        }
+      ]
+    }
+  ],
+  "app": {
+    "id": "generated_app",
+    "name": "Generated App",
+    "version": "1.0.0+1"
+  }
+}

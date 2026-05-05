@@ -16,6 +16,8 @@ services:
       - AWS_DEFAULT_REGION=us-east-1
     volumes:
       - localstack-data:/var/lib/localstack   # persist data between restarts
+      - /var/run/docker.sock:/var/run/docker.sock
+
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:4566/_localstack/health"]
       interval: 10s

@@ -92,8 +92,15 @@ router.get('/:serviceName', async (req, res) => {
 
     // Step 3: Merge all page files into one structure for React Flow
     // Each file represents one page — combine them into a pages array
-    const pages = files.map((file) => file.data);
-
+    const pages = files.flatMap((file) => {
+            // Check if this file uses the new Manifest format (has a 'pages' array at the root)
+            if (file.data && Array.isArray(file.data.pages)) {
+                return file.data.pages; // Extract all the pages from inside the manifest
+            }
+            // Fallback for the old format: the file itself is the page
+            return [file.data]; 
+        });
+        
     res.json({
       serviceName,
       pageCount: pages.length,
