@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
   try {
     const command = new ListObjectsV2Command({
       Bucket: BUCKET_NAME,
-      Prefix: 'design-files/',
+      Prefix: 'clients/companion/',
       Delimiter: '/',   // only get immediate sub-folders
     });
 
@@ -35,8 +35,8 @@ router.get('/', async (req, res) => {
 
     // CommonPrefixes gives us the sub-folders
     const services = (response.CommonPrefixes || []).map((prefix) => {
-      // "design-files/didi/" → "didi"
-      return prefix.Prefix.replace('design-files/', '').replace('/', '');
+      // "clients/companion/didi/" → "didi"
+      return prefix.Prefix.replace('clients/companion/', '').replace('/', '');
     });
 
     res.json({ services });
@@ -56,10 +56,10 @@ router.get('/:serviceName', async (req, res) => {
   const { serviceName } = req.params;
 
   try {
-    // Step 1: List all files in design-files/{serviceName}/
+    // Step 1: List all files in clients/companion/{serviceName}/inputfiles/
     const listCommand = new ListObjectsV2Command({
       Bucket: BUCKET_NAME,
-      Prefix: `design-files/${serviceName}/`,
+      Prefix: `clients/companion/${serviceName}/inputfiles/`,
     });
 
     const listResponse = await s3Client.send(listCommand);

@@ -54,11 +54,11 @@ async function seed() {
 
   // 2. Upload design files
   const seedDataPath = path.join(__dirname, '../../seed-data');
-  const designFilesPath = path.join(seedDataPath, 'design-files');
+  const clientsPath = path.join(seedDataPath, 'clients');
 
-  if (fs.existsSync(designFilesPath)) {
-    console.log('\n  📁 Uploading design files...');
-    await uploadFolder(designFilesPath, 'design-files');
+  if (fs.existsSync(clientsPath)) {
+    console.log('\n  📁 Uploading client files...');
+    await uploadFolder(clientsPath, 'clients');
   }
 
   console.log('\n✅  Seed complete!\n');
