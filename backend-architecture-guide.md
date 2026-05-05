@@ -137,7 +137,7 @@ AWS_ACCESS_KEY_ID=test
 AWS_SECRET_ACCESS_KEY=test
 
 # S3
-S3_BUCKET_NAME=antigravity-bucket
+S3_BUCKET_NAME=builder-mvp-bucket
 
 # API
 PORT=3001
@@ -182,7 +182,7 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
-    container_name: antigravity-api
+    container_name: buildermvpbackend-api
     ports:
       - "3001:3001"
     environment:
@@ -190,7 +190,7 @@ services:
       - AWS_REGION=us-east-1
       - AWS_ACCESS_KEY_ID=test
       - AWS_SECRET_ACCESS_KEY=test
-      - S3_BUCKET_NAME=antigravity-bucket
+      - S3_BUCKET_NAME=builder-mvp-bucket
       - PORT=3001
       - NODE_ENV=development
     volumes:
@@ -213,9 +213,9 @@ volumes:
 
 ```json
 {
-  "name": "antigravity-api",
+  "name": "buildermvpbackend-api",
   "version": "1.0.0",
-  "description": "Backend API for Antigravity React Flow app",
+  "description": "Backend API for React Flow app",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
@@ -288,7 +288,7 @@ const s3Client = new S3Client({
   }),
 });
 
-const BUCKET_NAME = process.env.S3_BUCKET_NAME || 'antigravity-bucket';
+const BUCKET_NAME = process.env.S3_BUCKET_NAME || 'builder-mvp-bucket';
 
 module.exports = { s3Client, BUCKET_NAME };
 ```
@@ -883,7 +883,7 @@ You will see logs like:
 localstack   | Ready.
 api          | 🚀  API server running on http://localhost:3001
 api          | 🌱  Running bucket seed...
-api          |   ✓ Created bucket: antigravity-bucket
+api          |   ✓ Created bucket: builder-mvp-bucket
 api          |   ✓ Uploaded: design-files/didi/account_page.json
 api          |   ✓ Uploaded: design-files/didi/amount_page.json
 api          |   ✓ Uploaded: design-files/corresponsalias/account_page.json

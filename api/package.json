@@ -1,7 +1,7 @@
 {
-  "name": "antigravity-api",
+  "name": "buildermvpbackend-api",
   "version": "1.0.0",
-  "description": "Backend API for Antigravity React Flow app",
+  "description": "Backend API for React Flow app",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",

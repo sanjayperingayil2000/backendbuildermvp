@@ -29,7 +29,7 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
-    container_name: antigravity-api
+    container_name: buildermvpbackend-api
     ports:
       - "3001:3001"
     environment:
@@ -37,7 +37,7 @@ services:
       - AWS_REGION=us-east-1
       - AWS_ACCESS_KEY_ID=test
       - AWS_SECRET_ACCESS_KEY=test
-      - S3_BUCKET_NAME=antigravity-bucket
+      - S3_BUCKET_NAME=builder-mvp-bucket
       - PORT=3001
       - NODE_ENV=development
     volumes:

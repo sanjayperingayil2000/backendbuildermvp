@@ -21,6 +21,6 @@ const s3Client = new S3Client({
   }),
 });
 
-const BUCKET_NAME = process.env.S3_BUCKET_NAME || 'antigravity-bucket';
+const BUCKET_NAME = process.env.S3_BUCKET_NAME || 'builder-mvp-bucket';
 
 module.exports = { s3Client, BUCKET_NAME };
