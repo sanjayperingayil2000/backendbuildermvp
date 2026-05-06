@@ -31,15 +31,15 @@ services:
       dockerfile: Dockerfile
     container_name: buildermvpbackend-api
     ports:
-      - "3001:3001"
+      - "${PORT}:${PORT}"
     environment:
-      - LOCALSTACK_ENDPOINT=http://localstack:4566
-      - AWS_REGION=us-east-1
-      - AWS_ACCESS_KEY_ID=test
-      - AWS_SECRET_ACCESS_KEY=test
-      - S3_BUCKET_NAME=builder-mvp-bucket
-      - PORT=3001
-      - NODE_ENV=development
+      - LOCALSTACK_ENDPOINT=${LOCALSTACK_ENDPOINT}
+      - AWS_REGION=${AWS_REGION}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME}
+      - PORT=${PORT}
+      - NODE_ENV=${NODE_ENV}
     volumes:
       - ./api/src:/app/src          # live reload — changes reflect instantly
       - ./seed-data:/app/seed-data  # seed files accessible inside container
