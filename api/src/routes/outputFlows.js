@@ -22,7 +22,7 @@ async function streamToString(stream) {
 }
 
 // ──────────────────────────────────────────────────────────────
-// GET /api/output-flows
+// GET /api/output-files
 // Lists all saved output flow files
 // Response: { flows: [{ id, name, savedAt, key }] }
 // ──────────────────────────────────────────────────────────────
@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
   try {
     const command = new ListObjectsV2Command({
       Bucket: BUCKET_NAME,
-      Prefix: 'output-flows/',
+      Prefix: 'outputfiles/',
     });
 
     const response = await s3Client.send(command);
@@ -40,20 +40,20 @@ router.get('/', async (req, res) => {
 
     const flows = files.map((obj) => ({
       key: obj.Key,
-      id: obj.Key.replace('output-flows/', '').replace('.json', ''),
+      id: obj.Key.replace('outputfiles/', '').replace('.json', ''),
       savedAt: obj.LastModified,
       size: obj.Size,
     }));
 
     res.json({ flows });
   } catch (error) {
-    console.error('Error listing output flows:', error);
-    res.status(500).json({ error: 'Failed to list output flows' });
+    console.error('Error listing output files:', error);
+    res.status(500).json({ error: 'Failed to list output files' });
   }
 });
 
 // ──────────────────────────────────────────────────────────────
-// GET /api/output-flows/:flowId
+// GET /api/output-files/:flowId
 // Fetches one saved output flow by ID
 // Response: the full saved JSON object
 // ──────────────────────────────────────────────────────────────
@@ -63,7 +63,7 @@ router.get('/:flowId', async (req, res) => {
   try {
     const command = new GetObjectCommand({
       Bucket: BUCKET_NAME,
-      Key: `output-flows/${flowId}.json`,
+      Key: `outputfiles/${flowId}.json`,
     });
 
     const response = await s3Client.send(command);
@@ -80,7 +80,7 @@ router.get('/:flowId', async (req, res) => {
 });
 
 // ──────────────────────────────────────────────────────────────
-// POST /api/output-flows/:flowId
+// POST /api/output-files/:flowId
 // Saves (or overwrites) an output flow
 // Body: the full output JSON object
 // Query: ?serviceName=DIDI (optional) to save to clients folder
@@ -108,8 +108,8 @@ router.post('/:flowId', async (req, res) => {
     };
 
     const key = serviceName 
-      ? `clients/companion/${serviceName}/output-flows/${flowId}.json`
-      : `output-flows/${flowId}.json`;
+      ? `clients/companion/${serviceName.toLowerCase()}/outputfiles/${flowId}.json`
+      : `outputfiles/${flowId}.json`;
 
     const command = new PutObjectCommand({
       Bucket: BUCKET_NAME,
@@ -133,7 +133,7 @@ router.post('/:flowId', async (req, res) => {
 });
 
 // ──────────────────────────────────────────────────────────────
-// DELETE /api/output-flows/:flowId
+// DELETE /api/output-files/:flowId
 // Deletes a saved output flow
 // ──────────────────────────────────────────────────────────────
 router.delete('/:flowId', async (req, res) => {
@@ -142,7 +142,7 @@ router.delete('/:flowId', async (req, res) => {
   try {
     const command = new DeleteObjectCommand({
       Bucket: BUCKET_NAME,
-      Key: `output-flows/${flowId}.json`,
+      Key: `outputfiles/${flowId}.json`,
     });
 
     await s3Client.send(command);

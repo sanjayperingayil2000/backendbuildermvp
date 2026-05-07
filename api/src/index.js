@@ -34,7 +34,7 @@ app.get('/health', (req, res) => {
 
 // ── Routes ──
 app.use('/api/design-files', designFilesRouter);
-app.use('/api/output-flows', outputFlowsRouter);
+app.use('/api/output-files', outputFlowsRouter);
 
 // ── 404 handler ──
 app.use((req, res) => {
